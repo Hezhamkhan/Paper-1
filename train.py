@@ -2,7 +2,8 @@
 """
 
 #l1= #path to directory where all train images are held
--------------------------Repeating prep labels--------------------
+
+"""##-------------------------Repeating prep labels--------------------##
 df1=pd.read_excel("MalePCs.xlsx") # label file1
 
 import pandas as pd
@@ -41,7 +42,9 @@ dfMaleFinal = dfMale.drop(columns=["Filename"]).rename(columns={"NewName":"Filen
 dfMaleFinal
 
 dfMaleFinal.to_csv('male_labels.csv',index=False)
----------------------------------------------------------------------------------------------
+"""##---------------------------------------------------------------------------------------------##""""
+
+
 df2=pd.read_csv('male_labels.csv')
 import cv2
 from cv2 import error 
@@ -81,8 +84,8 @@ def load_train(df,gender):
                     train_img.append(img)
                     train_label.append(np.asarray([df.iloc[i][0],df.iloc[i]
 
-                                                   """
-""""selecting a sample size"""   ##I was thinking to redefine sample size here
+                                                  
+""""selecting a sample size ##  was thinking to redefine sample size here"""
 
 train_img,train_label=load_train(df2,"male")
 
