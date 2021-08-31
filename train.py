@@ -82,14 +82,14 @@ def load_train(df,gender):
                     train_label.append(np.asarray([df.iloc[i][0],df.iloc[i]
 
                                                    """
-""""selecting a sample size"""   
+""""selecting a sample size"""   ##I was thinking to redefine sample size here
 
 train_img,train_label=load_train(df2,"male")
 
-
 import matplotlib.pyplot as plt
-plt.imshow(train_img[1])
+plt.imshow(train_img[1])    ## fails to show image as list is empty, some how the photos were not loaded/saved in the previous loop.
 
+----- ##from here and after I have tested it on a small dataset and it works, but I havent yet tried it on the big dataset##-----------                                                  
 train=np.asarray(train_img) #converting to 4d numpy array req for model
 train_label=np.asarray(train_label,dtype=np.float32)
 plt.imshow(train[3])
@@ -146,20 +146,5 @@ history=model.fit(X_train, y_train,validation_data=(X_test,y_test), batch_size=2
 #save model weights
 model.save_weights('test_male_resnet.h5')
 pd.DataFrame(history.history).to_csv("log_resnet_male.csv")
-
-#predict
-arr=model.predict(X_test)
-from sklearn.metrics import mean_squared_error
-mean_squared_error(pd.DataFrame(y_test)[0],arr[:,0])
-
-#plot accuracy 
-import matplotlib.pyplot as plt
-plt.plot(history.history['loss'])
-plt.plot(history.history['val_loss'])
-plt.title('Model accuracy')
-plt.ylabel('Accuracy')
-plt.xlabel('Epoch')
-plt.legend(['Train', 'Test'], loc='upper left')
-plt.show()
 
 
